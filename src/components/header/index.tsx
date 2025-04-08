@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Header() {
     return (
         <header className="flex px-2 py-4 bg-zinc-900 text-white">
@@ -7,14 +9,17 @@ export default function Header() {
             <nav>
                 <ul className="flex items-center justify-center gap-4 mr-10">
                     <li>
-                        <a href="#">
-                            Home
-                        </a>
+                        <Link href="/">
+                        Home
+                        </Link>
                     </li>
+
                     <li>
-                        <a href="#">
-                            Posts
-                        </a>
+                        <Link href="/contatos">Contatos</Link>
+                    </li>
+
+                    <li>
+                        <Link href="/dashboards">Dashboards</Link>
                     </li>
                 </ul>
             </nav>
