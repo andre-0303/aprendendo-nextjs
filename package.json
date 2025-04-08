@@ -2,13 +2,13 @@
   "name": "aula",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+ "scripts": {
+  "dev": "next dev",
+  "build": "next build && next export",
+  "start": "next start"
+},
   "dependencies": {
+    "@netlify/next": "^1.4.9",
     "lucide-react": "^0.487.0",
     "next": "15.2.4",
     "react": "^19.0.0",
