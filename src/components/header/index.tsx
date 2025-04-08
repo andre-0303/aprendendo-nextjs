@@ -1,28 +1,46 @@
+'use client'
 import Link from 'next/link'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 export default function Header() {
-    return (
-        <header className="flex px-2 py-4 bg-zinc-900 text-white">
-            <div className="flex items-center justify-between w-full mx-auto max-w-7xl">
-                <h1>Header da aplicação</h1>
-            </div>
-            <nav>
-                <ul className="flex items-center justify-center gap-4 mr-10">
-                    <li>
-                        <Link href="/">
-                        Home
-                        </Link>
-                    </li>
+  const [menuOpen, setMenuOpen] = useState(false)
 
-                    <li>
-                        <Link href="/contatos">Contatos</Link>
-                    </li>
+  return (
+    <header className="bg-zinc-900 text-white px-4 py-4">
+      <div className="flex items-center justify-between mx-auto max-w-7xl">
+        {/* Logo / título */}
+        <h1 className="text-lg font-bold">Header da aplicação</h1>
 
-                    <li>
-                        <Link href="/dashboards">Dashboards</Link>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-    )
+        {/* Menu desktop */}
+        <nav className="hidden md:flex gap-6">
+          <Link href="/" className="hover:text-zinc-300">Home</Link>
+          <Link href="/contatos" className="hover:text-zinc-300">Contatos</Link>
+          <Link href="/dashboards" className="hover:text-zinc-300">Dashboards</Link>
+        </nav>
+
+        {/* Botão de menu mobile */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden transition-transform duration-200 active:scale-95"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Menu mobile dropdown com animação */}
+      <div
+        className={`overflow-hidden transition-all duration-300 md:hidden ${
+          menuOpen ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="flex flex-col items-end space-y-2 pr-4">
+          <Link href="/" className="hover:text-zinc-300">Home</Link>
+          <Link href="/contatos" className="hover:text-zinc-300">Contatos</Link>
+          <Link href="/dashboards" className="hover:text-zinc-300">Dashboards</Link>
+        </nav>
+      </div>
+    </header>
+  )
 }
